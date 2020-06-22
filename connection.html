@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<head>
+
+    <style>
+        body {
+            align: centre;
+            background-color: #EED426;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #006666;
+            font-family: verdana;
+        }
+        
+        .custinfo {
+            display: flex;
+            justify-content: center;
+            /* align: center; */
+        }
+        
+        #rentalcost {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid black;
+        }
+    </style>
+
+    <script>
+        function myfun() {
+            var Scheme;
+            var num;
+            var num2;
+            var tmr;
+            if (document.getElementById("scheme1").checked)
+                Scheme = document.getElementById("scheme1").value;
+            else if (document.getElementById("scheme2").checked)
+                Scheme = document.getElementById("scheme2").value;
+            else if (document.getElementById("scheme3").checked)
+                Scheme = document.getElementById("scheme3").value;
+
+            var duration = document.getElementById("duration").value;
+            var connection = document.getElementById("connectiontype").value;
+
+            if (Scheme === "Local")
+                num = 200;
+            else if (Scheme === "STD")
+                num = 350;
+            else if (Scheme === "FullTalkTime")
+                num = 500;
+
+            //
+
+            if (connection === "Pre")
+                num2 = 75;
+            else if (connection === "Post")
+                num2 = 150;
+
+            tmr = (duration * num) + num2;
+            document.getElementById("result").innerHTML = "The Total Monthly Rental Cost is Rs. " + (tmr);
+
+        }
+    </script>
+
+</head>
+
+
+
+
+
+<body>
+    <h1>ACTB Connection Portal</h1>
+
+
+    <form>
+        <table class="custinfo">
+            <tr>
+                <td><label for="custname">Customer Name</label></td>
+                <td><input type="text" id="custname" name="custname" pattern="[a-z A-Z]*" placeholder="Enter the customer name" required="required"></td>
+            </tr>
+
+            <tr>
+                <td><label for="email">Customer Email</label></td>
+                <td><input type="text" id="email" name="email" placeholder="abc@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="required"></td>
+            </tr>
+
+            <tr>
+                <td><label for="mobile">Mobile Number</label></td>
+                <td><input type="text" name="mobile" id="mobile" placeholder="Enter the Mobile Number" maxlength="10" pattern="[789][0-9]{9}"></td>
+            </tr>
+
+            <tr>
+                <td><label for="conntype">Type of Broadband</label></td>
+                <td><select id="connectiontype" name="conntype" required="required">
+                  <option value="Pre" id="Pre">Pre</option>
+                  <option value="Post" id="Post">Post</option>
+              </select></td>
+            </tr>
+
+            <tr>
+                <td><label for="scheme">Scheme Name</label></td>
+                <td><input type="radio" name="scheme" id="scheme1" value="Local" required="required"><label for="scheme1">Local</label>
+                    <input type="radio" id="scheme2" name="scheme" value="STD" required="required"><label for="scheme2">STD</label>
+                    <input type="radio" id="scheme3" name="scheme" value="FullTalkTime" required="required"><label for="scheme3">FullTalkTime</label></td>
+            </tr>
+
+            <tr>
+                <td><label for="duration">Connection Duration</label></td>
+                <td><input type="number" id="duration" name="duration" min="1" max="12" required="required"></td>
+            </tr>
+
+            <tr>
+                <td><input type="button" name="submit" value="Calulate Bill Amount" onclick="myfun()"></td>
+                <td><input type="reset" name="clear" id="clear" value="Reset" /></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div id="result"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div>
+        <table id="rentalcost" border="1">
+            <caption>Rental Cost Table</caption>
+            <tr>
+                <th>Connection Type</th>
+                <th>Call Limit</th>
+                <th>Monthly Rental</th>
+            </tr>
+            <tr>
+                <td>Pre</td>
+                <td>500</td>
+                <td>75</td>
+            </tr>
+            <tr>
+                <td>Post </td>
+                <td>Unlimited</td>
+                <td>150</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>
